@@ -1,0 +1,15 @@
+<link rel="stylesheet" href="/css/survey.css">
+<div id="outerContainer">
+
+		<div id="innerContainer">
+			<div class="questionContainer"><span id="questionNumber"></span><span id="questionDisplay"></span></div>
+			<div class="choiceA choicesAnimation" onclick="checkAnswer('A')"></div>
+			<div class="choiceB choicesAnimation" onclick="checkAnswer('B')"></div>
+			<div class="choiceC choicesAnimation" onclick="checkAnswer('C')"></div>
+			<div class="feedback">Correct</div>
+			<div class="nextButton nextAnimation" onclick="nextQuestion()">Next</div>
+			<div class="scoreLabel">Score: <span id="scoreTotalLabel"></span></div>
+		</div>
+<script src="/js/survey.js"></script>
+{{!-- <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> --}}
+<script src="http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
