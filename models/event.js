@@ -8,19 +8,40 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [1]
       }
+    },
+    eventStart: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
+    },
+    eventEnd: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
+    },
+    img: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    address: {
+      type: DataTypes.STRING,
+      allowNull: false
+    },
+    location: {
+      type: DataTypes.STRING,
+      allowNull: false
     }
+
   });
 
   Event.associate = models => {
     // Event.hasMany(User, {
-    //   foreingKey: {
+    //   foreignKey: {
     //     allowNull: false
     //   }
     // });
 
     Event.belongsToMany(models.User, {
       as: "Networks",
-      through: "users_networks",
+      through: "peoples_networks",
       foreignKey: "eventId"
     });
   

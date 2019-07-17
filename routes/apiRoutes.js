@@ -13,6 +13,7 @@ module.exports = function(app) {
     }).then(result => {
       console.log("created user");
       res.json(result);
+      res.redirect(307, "/login");
     })
   })
 
@@ -36,4 +37,19 @@ module.exports = function(app) {
   //     res.json(dbExample);
   //   });
   // });
+
+
+  //event creation
+  app.post("/host", (req, res) => {
+    db.Event.create({
+      eventName: req.body.name,
+      eventStart: req.body.start,
+      eventEnd: req.body.end,
+      img: req.body.img,
+      address: req.body.address,
+      location: req.body.location
+    }).then(result => {
+      console.log("event created");
+    })
+  })
 };

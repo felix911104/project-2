@@ -1,5 +1,5 @@
 var validator = require("../controller/validate");
-var Event = require("./event.js");
+// var Event = require("./event.js");
 
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
@@ -9,7 +9,20 @@ module.exports = function (sequelize, DataTypes) {
       unique: true,
       validate: {
         len: [1],
-        isUnique: validator.isUnique("User", "name")
+        isUnique: function (value, next) {
+          var self = this;
+          User.findAll({ where: { name: value } })
+            .then(function (user) {
+              // reject if a different user wants to use the same username
+              if (user && self.id !== user.id) {
+                return next('username already in use!');
+              }
+              return next();
+            })
+            .catch(function (err) {
+              return next(err);
+            });
+        }
       }
     },
     pass: {
