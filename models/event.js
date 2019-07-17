@@ -8,6 +8,32 @@ module.exports = (sequelize, DataTypes) => {
       validate: {
         len: [1]
       }
+    },
+    eventStart: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
+    },
+    eventEnd: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
+    }
+  });
+
+   var Event = sequelize.define("Event", {
+    eventName: {
+      type: DataTypes.STRING,
+      allowNull: false,
+      validate: {
+        len: [1]
+      }
+    },
+    eventStart: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
+    },
+    eventEnd: {
+      type: DataTypes.DATEONLY,
+      allowNull: false
     }
   });
 
