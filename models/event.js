@@ -1,6 +1,5 @@
 //figure out expiration date
 
-
 module.exports = (sequelize, DataTypes) => {
   var Event = sequelize.define("Event", {
     eventName: {
@@ -13,15 +12,15 @@ module.exports = (sequelize, DataTypes) => {
   });
 
   Event.associate = models => {
-    Event.hasMany(models.User, {
-      foreingKey: {
-        allowNull: false
-      }
-    });
+    // Event.hasMany(User, {
+    //   foreingKey: {
+    //     allowNull: false
+    //   }
+    // });
 
     Event.belongsToMany(models.User, {
       as: "Networks",
-      through: "peoples_networks",
+      through: "users_networks",
       foreignKey: "eventId"
     });
   

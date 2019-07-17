@@ -1,10 +1,15 @@
+var validator = require("../controller/validate");
+var Event = require("./event.js");
+
 module.exports = function (sequelize, DataTypes) {
   var User = sequelize.define("User", {
     name: {
       type: DataTypes.STRING,
       allowNull: false,
+      unique: true,
       validate: {
-        len: [1]
+        len: [1],
+        isUnique: validator.isUnique("User", "name")
       }
     },
     pass: {
@@ -18,13 +23,7 @@ module.exports = function (sequelize, DataTypes) {
 
   User.associate = models => {
 
-    User.hasMany(models.Events, {
-      foreignKey: {
-        allowNull: false
-      }
-    });
-
-    User.belongsToMany(models.Events, {
+    User.belongsToMany(models.Event, {
       as: "Peoples",
       through: "peoples_networks",
       foreignKey: "userId"
