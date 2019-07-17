@@ -1,53 +1,3 @@
-let questionBank = [
-    {
-        question: "Who was flying with Mad Eye when he died?",
-        choiceA: "Mundungus Fletcher",
-        choiceB: "George Weasley",
-        choiceC: "Hermione Granger",
-    },
-    {
-        question: "What prison was Gellert Grindelwald sent to?",
-        choiceA: "Azkaban",
-        choiceB: "Nurmengard",
-        choiceC: "Niether",
-       
-    },
-    {
-        question: "In which year did Albus Dumbledore defeat Grindelwald?",
-        choiceA: "1943",
-        choiceB: "1946",
-        choiceC: "1945",
-     
-    },
-    {
-        question: "What is the first name of Severus Snape’s mother?",
-        choiceA: "Eileen",
-        choiceB: "Mary",
-        choiceC: "Anne",
-       
-    },
-    {
-        question: "What ice cream did Harry Get at the zoo in the 1st book?",
-        choiceA: "Strawberry",
-        choiceB: "Lemon Ice Pop",
-        choiceC: "Mint Chocolate Chip",
-       
-    },
-    {
-        question: "What was the name of the owl Percy got for becoming a prefect?",
-        choiceA: "Pigwidgeon",
-        choiceB: "Snuffles",
-        choiceC: "Hermes",
-        
-    },
-    {
-        question: "What is Harry's birthday?",
-        choiceA: "31/07/1980",
-        choiceB: "28/07/1980",
-        choiceC: "31/08/1980",
-        
-    }
-];
 
 const questionDisplay = document.getElementById("questionDisplay");
 const questionDisplayContainer = document.querySelector(".questionContainer");
@@ -161,10 +111,10 @@ function nextQuestion() {
 }
 
 function init() {
-    feedbackDisplay.classList.add("hidden");
-    nextBut.classList.add("hidden");
-    scoreDisplay.classList.add("hidden");
-    resetQuestion();
+    // feedbackDisplay.classList.add("hidden");
+    // nextBut.classList.add("hidden");
+    // scoreDisplay.classList.add("hidden");
+    // resetQuestion();
 }
 
 window.onload = init;
