@@ -21,9 +21,7 @@ module.exports = function(app) {
       db.Event.findAll({}).then(function(dbEvent){
         res.json(dbEvent)
       });
-      // user_event_db.events.findAll({}).then(function() {
-      // res.json("I see you");
-    // });
+  
   });
   
   
