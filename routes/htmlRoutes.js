@@ -32,6 +32,16 @@ module.exports = function (app) {
     res.render("contact");
   });
 
+  app.get("/login", function (req, res) {
+
+    res.render("login");
+  });
+
+  app.get("/create", function (req, res) {
+
+    res.render("create");
+  });
+
   app.get("/example", function (req, res) {
 
     res.render("example");
