@@ -3,19 +3,19 @@ var passport = require("../config/passport");
 
 module.exports = function(app) {
 
-  app.post("/login", passport.authenticate("local"), function (req, res) {
+  app.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.json(req.user);
   });
 
   //create user
-  app.post("/login/new", (req, res) => {
+  app.post("/api/login/new", (req, res) => {
 
     db.User.create({
       email: req.body.email, 
       password: req.body.password
     })
       .then(function () {
-        res.redirect(307, "/login/new");
+        res.redirect(307, "api/login/new");
       })
       .catch(function (err) {
         res.status(401).json(err);
@@ -51,12 +51,12 @@ module.exports = function(app) {
   // });
 
   //get all users need to rework later
-  app.get("/login", (req, res) => {
-    db.User.findAll({}).then(result => {
-      console.log(result);
-      res.json(result);
-    })
-  });
+  // app.get("/login", (req, res) => {
+  //   db.User.findAll({}).then(result => {
+  //     console.log(result);
+  //     res.json(result);
+  //   })
+  // });
 
   //create groups add the total value of the answer and compare that to all the users surveys
   app.get("/manager", (req, res) => {
