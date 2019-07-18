@@ -38,12 +38,17 @@ module.exports = function(app) {
   //   });
   // });
 
-  //get all users
+  //get all users need to rework later
   app.get("/login", (req, res) => {
     db.User.findAll({}).then(result => {
       console.log(result);
       res.json(result);
     })
+  });
+
+  //create groups
+  app.post("/manager", (req, res) => {
+    
   })
 
 
