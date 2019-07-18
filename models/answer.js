@@ -1,42 +1,42 @@
 module.exports = (sequelize, DataTypes) => {
   var Answer = sequelize.define("Answer", {
-    q1: {
+    a1: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    q2: {
+    a2: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    q3: {
+    a3: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    q4: {
+    a4: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    q5: {
+    a5: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    q6: {
+    a6: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    q7: {
+    a7: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    q8: {
+    a8: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    q9: {
+    a9: {
       type: DataTypes.STRING,
       allowNull: false
     },
-    q10: {
+    a10: {
       type: DataTypes.STRING,
       allowNull: false
     }

@@ -46,9 +46,13 @@ module.exports = function(app) {
     })
   });
 
-  //create groups
-  app.post("/manager", (req, res) => {
-    
+  //create groups add the total value of the answer and compare that to all the users surveys
+  app.get("/manager", (req, res) => {
+    db.Answer.findAll({}).then(result => {
+      console.log(result.length);
+    })
+
+
   })
 
 
