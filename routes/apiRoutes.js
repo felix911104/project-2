@@ -17,6 +17,14 @@ module.exports = function(app) {
     })
   })
 
+  //Event API Route
+    app.get("/api/events", function(req, res) {
+      db.Event.findAll({}).then(function(dbEvent){
+        res.json(dbEvent)
+      });
+  
+  });
+
   // Get all examples
   // app.get("/api/examples", function(req, res) {
   //   db.Example.findAll({}).then(function(dbExamples) {
