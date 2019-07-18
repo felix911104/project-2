@@ -10,11 +10,17 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         len: [1],
         isUnique: function (value, next) {
+          console.log(value, "what is value");
           var self = this;
-          User.findAll({ where: { name: value } })
-            .then(function (user) {
+          User.findOne({
+            where: {
+              name: value
+            }
+          }).then(function (user) {
+              console.log(user,"in the promise");
               // reject if a different user wants to use the same username
               if (user && self.id !== user.id) {
+                console.log(self.id, "self id", "user id", user.id);
                 return next('username already in use!');
               }
               return next();

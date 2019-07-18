@@ -38,6 +38,14 @@ module.exports = function(app) {
   //   });
   // });
 
+  //get all users
+  app.get("/login", (req, res) => {
+    db.User.findAll({}).then(result => {
+      console.log(result);
+      res.json(result);
+    })
+  })
+
 
   //event creation
   app.post("/host", (req, res) => {
