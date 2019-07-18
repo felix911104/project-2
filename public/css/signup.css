@@ -1,0 +1,78 @@
+body {
+    background: #000 url("https://wallpapercave.com/wp/45DVkzT.jpg") repeat center center;
+    display: flex;
+    justify-content: center;
+    padding: 50px;
+  }
+  
+  .signup-modal {
+    min-width: 330px;
+    background: rgba(21, 30, 38, 0.95);
+    border-radius: 5px;
+    font-family: "Roboto", sans-serif;
+    color: #EFEFEF;
+    overflow: hidden;
+  }
+  .signup-modal > .heading {
+    display: flex;
+    justify-content: center;
+  }
+  .signup-modal > .heading > h3 {
+    margin: 24px;
+    font-weight: 400;
+  }
+  .signup-modal > .content {
+    padding: 0 40px;
+  }
+  .signup-modal > .footer {
+    display: flex;
+    justify-content: center;
+  }
+  .signup-modal > .footer > p {
+    font-size: .7em;
+    font-weight: 300;
+    padding: 8px;
+  }
+  
+  a.link {
+    color: #F2766E;
+    text-decoration: none;
+    transition: .3s;
+  }
+  a.link:hover, a.link:focus {
+    color: #ee4a3f;
+  }
+  
+  .field-group {
+    margin-bottom: 28px;
+  }
+  .field-group > .signup-form {
+    width: 100%;
+    box-sizing: border-box;
+    padding-left: 8px;
+    color: #EFEFEF;
+    background: transparent;
+    border: none;
+    border-bottom: 1px solid #52606D;
+  }
+  .field-group > .signup-form:focus {
+    outline: none;
+    border-bottom: 1px solid #426991;
+  }
+  
+  .signup-button {
+    background: #FD4B40;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 100%;
+    color: #EFEFEF;
+    font-weight: 600;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: .3s;
+  }
+  .signup-button:hover, .signup-button:focus {
+    background: #fd3d31;
+  }
+  
