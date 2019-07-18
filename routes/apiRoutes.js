@@ -18,7 +18,7 @@ module.exports = function(app) {
   })
 
   //Event API Route provides list of all events. Listed ascending eventStart order
-    app.get("/api/events/date", function(req, res) {
+    app.get("/api/events/", function(req, res) {
       db.Event.findAll({
         order:[
           ['eventStart']
@@ -34,6 +34,19 @@ module.exports = function(app) {
     db.Event.findAll({
       order:[
         ['eventName']
+      ],
+    }).then(function(dbEvent){
+      
+      res.json(dbEvent)
+    });
+
+});
+
+  // EVENT API that orders the list of events by location
+  app.get("/api/events/location", function(req, res) {
+    db.Event.findAll({
+      order:[
+        ['location']
       ],
     }).then(function(dbEvent){
       
