@@ -33,9 +33,29 @@ module.exports = function (app) {
     res.render("contact");
   });
 
+  app.get("/login", function (req, res) {
+
+    res.render("login");
+  });
+
+  app.get("/create", function (req, res) {
+
+    res.render("create");
+  });
+
   app.get("/example", function (req, res) {
 
     res.render("example");
+  });
+
+  app.get("/survey", function (req, res) {
+
+    res.render("survey");
+  });
+
+  app.get("/signup", function (req, res) {
+
+    res.render("signup");
   });
 
   // Render 404 page for any unmatched routes

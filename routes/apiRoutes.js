@@ -1,21 +1,26 @@
 var db = require("../models");
+var passport = require("../config/passport");
 
 module.exports = function(app) {
 
-  //create user
-  app.post("/login/new", (req, res) => {
+  app.post("/api/login", passport.authenticate("local"), function (req, res) {
+    res.json(req.user);
+  });
 
-    console.log(req.body.name, req.body.pass);
+  //create user
+  app.post("/api/login/new", (req, res) => {
 
     db.User.create({
-      name: req.body.name, 
-      pass: req.body.pass
-    }).then(result => {
-      console.log("created user");
-      res.json(result);
-      res.redirect(307, "/login");
+      email: req.body.email, 
+      password: req.body.password
     })
-  })
+      .then(function () {
+        res.redirect(307, "api/login/new");
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  });
 
   //Event API Route provides list of all events. Listed ascending eventStart order
     app.get("/api/events/", function(req, res) {
@@ -27,7 +32,6 @@ module.exports = function(app) {
         
         res.json(dbEvent)
       });
-  
   });
   // EVENT API that orders the list of events by name
   app.get("/api/events/name", function(req, res) {
@@ -87,22 +91,19 @@ module.exports = function(app) {
   // });
 
   //get all users need to rework later
-  app.get("/login", (req, res) => {
-    db.User.findAll({}).then(result => {
-      console.log(result);
-      res.json(result);
-    })
-  });
+  // app.get("/login", (req, res) => {
+  //   db.User.findAll({}).then(result => {
+  //     console.log(result);
+  //     res.json(result);
+  //   })
+  // });
 
   //create groups add the total value of the answer and compare that to all the users surveys
   app.get("/manager", (req, res) => {
     db.Answer.findAll({}).then(result => {
       console.log(result.length);
     })
-
-
   })
-
 
   //event creation
   app.post("/host", (req, res) => {
@@ -110,11 +111,25 @@ module.exports = function(app) {
       eventName: req.body.name,
       eventStart: req.body.start,
       eventEnd: req.body.end,
-      img: req.body.img,
       address: req.body.address,
       location: req.body.location
     }).then(result => {
       console.log("event created");
     })
   })
+
+  // Route for getting some data about our user to be used client side
+  app.get("/api/user_data", function (req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id
+      });
+    }
+  });
 };
