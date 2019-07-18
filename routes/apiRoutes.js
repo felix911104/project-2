@@ -1,28 +1,32 @@
 var db = require("../models");
+var passport = require("../config/passport");
 
 module.exports = function(app) {
+
+  app.post("/login", passport.authenticate("local"), function (req, res) {
+    res.json(req.user);
+  });
 
   //create user
   app.post("/login/new", (req, res) => {
 
-    console.log(req.body.name, req.body.pass);
-
     db.User.create({
-      name: req.body.name, 
-      pass: req.body.pass
-    }).then(result => {
-      console.log("created user");
-      res.json(result);
-      res.redirect(307, "/login");
+      email: req.body.email, 
+      password: req.body.password
     })
-  })
+      .then(function () {
+        res.redirect(307, "/login/new");
+      })
+      .catch(function (err) {
+        res.status(401).json(err);
+      });
+  });
 
   //Event API Route
     app.get("/api/events", function(req, res) {
       db.Event.findAll({}).then(function(dbEvent){
         res.json(dbEvent)
       });
-  
   });
 
   // Get all examples
@@ -59,10 +63,7 @@ module.exports = function(app) {
     db.Answer.findAll({}).then(result => {
       console.log(result.length);
     })
-
-
   })
-
 
   //event creation
   app.post("/host", (req, res) => {
@@ -70,11 +71,25 @@ module.exports = function(app) {
       eventName: req.body.name,
       eventStart: req.body.start,
       eventEnd: req.body.end,
-      img: req.body.img,
       address: req.body.address,
       location: req.body.location
     }).then(result => {
       console.log("event created");
     })
   })
+
+  // Route for getting some data about our user to be used client side
+  app.get("/api/user_data", function (req, res) {
+    if (!req.user) {
+      // The user is not logged in, send back an empty object
+      res.json({});
+    } else {
+      // Otherwise send back the user's email and id
+      // Sending back a password, even a hashed password, isn't a good idea
+      res.json({
+        email: req.user.email,
+        id: req.user.id
+      });
+    }
+  });
 };

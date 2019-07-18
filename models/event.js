@@ -9,6 +9,9 @@ module.exports = (sequelize, DataTypes) => {
         len: [1]
       }
     },
+    company: {
+      type: DataTypes.STRING
+    },
     eventStart: {
       type: DataTypes.DATEONLY,
       allowNull: false
@@ -17,17 +20,21 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.DATEONLY,
       allowNull: false
     },
-    img: {
-      type: DataTypes.STRING,
-      allowNull: false
-    },
     address: {
       type: DataTypes.STRING,
-      allowNull: false
     },
     location: {
       type: DataTypes.STRING,
       allowNull: false
+    },
+    hostName: {
+      type: DataTypes.STRING
+    },
+    email: {
+      type: DataTypes.STRING,
+      validate: {
+        isEmail: true
+      }
     }
 
   });

@@ -1,43 +1,43 @@
 module.exports = (sequelize, DataTypes) => {
   var Answer = sequelize.define("Answer", {
     a1: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     a2: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     a3: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     a4: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     a5: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     a6: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     a7: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     a8: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     a9: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     },
     a10: {
-      type: DataTypes.STRING,
+      type: DataTypes.INTEGER,
       allowNull: false
     }
   });
@@ -50,4 +50,4 @@ module.exports = (sequelize, DataTypes) => {
     });
   }
   return Answer;
-} 
+}
