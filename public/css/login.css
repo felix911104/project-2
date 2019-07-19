@@ -60,7 +60,7 @@ html, body {
   }
   #wrapper #submit {
     width: 80%;
-    margin-left: 10%;
+    /* margin-left: 10%; */
     position: relative;
     margin-top: 40px;
     border: none;
