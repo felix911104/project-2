@@ -1,23 +1,26 @@
 var db = require("../models");
 var passport = require("../config/passport");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
 
-  app.post("/api/login", passport.authenticate("local"), function (req, res) {
+  app.post("/api/login", isAuthenticated, function (req, res) {
     res.json(req.user);
   });
 
   //create user
-  app.post("/api/login/new", (req, res) => {
-
+  app.post("/api/signup", (req, res) => {
+    console.log(req.body, "api sign up");
     db.User.create({
       email: req.body.email, 
       password: req.body.password
     })
       .then(function () {
-        res.redirect(307, "api/login/new");
+        console.log("why no redirect! apiRoutes.js");
+        res.redirect(307, "/api/login");
       })
       .catch(function (err) {
+        console.log(err, "what is err");
         res.status(401).json(err);
       });
   });
@@ -115,6 +118,13 @@ module.exports = function(app) {
       location: req.body.location
     }).then(result => {
       console.log("event created");
+    })
+  })
+
+  //testing to see whats in the database
+  app.get("/api/user", (req,res) => {
+    db.User.findAll({}).then(result => {
+      res.json(result);
     })
   })
 
