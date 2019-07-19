@@ -23,9 +23,9 @@ module.exports = function (app) {
     res.render("events");
   });
 
-  app.get("/news", function (req, res) {
+  app.get("/groups", function (req, res) {
 
-    res.render("news");
+    res.render("groups");
   });
 
   app.get("/contact", function (req, res) {
@@ -41,11 +41,6 @@ module.exports = function (app) {
   app.get("/create", function (req, res) {
 
     res.render("create");
-  });
-
-  app.get("/example", function (req, res) {
-
-    res.render("example");
   });
 
   app.get("/survey", function (req, res) {
