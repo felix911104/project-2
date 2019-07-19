@@ -9,26 +9,25 @@ module.exports = function (sequelize, DataTypes) {
       unique: true,
       validate: {
         isEmail: true,
-        isUnique: function (value, next) {
-          console.log(value, "what is value");
-          var self = this;
-          User.findOne({
-            where: {
-              name: value
-            }
-          }).then(function (user) {
-              console.log(user,"in the promise");
-              // reject if a different user wants to use the same username
-              if (user && self.id !== user.id) {
-                console.log(self.id, "self id", "user id", user.id);
-                return next('username already in use!');
-              }
-              return next();
-            })
-            .catch(function (err) {
-              return next(err);
-            });
-        }
+        // isUnique: function (value, next) {
+        //   var self = this;
+        //   User.findOne({
+        //     where: {
+        //       name: value
+        //     }
+        //   }).then(function (user) {
+        //       console.log(user,"in the promise");
+        //       // reject if a different user wants to use the same username
+        //       if (user && self.id !== user.id) {
+        //         console.log(self.id, "self id", "user id", user.id);
+        //         return next('username already in use!');
+        //       }
+        //       return next();
+        //     })
+        //     .catch(function (err) {
+        //       return next(err);
+        //     });
+        // }
       }
     },
     password: {
@@ -42,6 +41,7 @@ module.exports = function (sequelize, DataTypes) {
 
   // Creating a custom method for our User model. This will check if an unhashed password entered by the user can be compared to the hashed password stored in our database
   User.prototype.validPassword = function (password) {
+    console.log(password, "validating password function");
     return bcrypt.compareSync(password, this.password);
   };
   // Hooks are automatic methods that run during various phases of the User Model lifecycle
