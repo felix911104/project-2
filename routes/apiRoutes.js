@@ -22,12 +22,52 @@ module.exports = function(app) {
       });
   });
 
-  //Event API Route
-    app.get("/api/events", function(req, res) {
-      db.Event.findAll({}).then(function(dbEvent){
+  //Event API Route provides list of all events. Listed ascending eventStart order
+    app.get("/api/events/", function(req, res) {
+      db.Event.findAll({
+        order:[
+          ['eventStart']
+        ],
+      }).then(function(dbEvent){
+        
         res.json(dbEvent)
       });
   });
+  // EVENT API that orders the list of events by name
+  app.get("/api/events/name", function(req, res) {
+    db.Event.findAll({
+      order:[
+        ['eventName']
+      ],
+    }).then(function(dbEvent){
+      
+      res.json(dbEvent)
+    });
+
+});
+
+  // EVENT API that orders the list of events by location
+  app.get("/api/events/location", function(req, res) {
+    db.Event.findAll({
+      order:[
+        ['location']
+      ],
+    }).then(function(dbEvent){
+      
+      res.json(dbEvent)
+    });
+
+});
+  
+// Working Event API Route provides list of all events
+  //   app.get("/api/events", function(req, res) {
+  //     db.Event.findAll({}).then(function(dbEvent){
+  //       res.json(dbEvent)
+  //     });
+  
+  // });
+
+
 
   // Get all examples
   // app.get("/api/examples", function(req, res) {
