@@ -1,4 +1,6 @@
 var db = require("../models");
+var path = require("path");
+var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
   // Load index page
@@ -18,7 +20,7 @@ module.exports = function (app) {
     res.render("about");
   });
 
-  app.get("/events", function (req, res) {
+  app.get("/events", isAuthenticated, function (req, res) {
 
     res.render("events");
   });
@@ -35,6 +37,10 @@ module.exports = function (app) {
 
   app.get("/login", function (req, res) {
 
+    if (req.user) {
+      console.log("htmlRoutes");
+      res.redirect("/events");
+    }
     res.render("login");
   });
 
@@ -50,7 +56,17 @@ module.exports = function (app) {
 
   app.get("/signup", function (req, res) {
 
+    if (req.user) {
+      console.log("hello....!, htmlRoutes.js");
+      res.render("index");
+    }else {
     res.render("signup");
+    }
+    });
+
+  app.get("/logout", function (req, res) {
+    req.logout();
+    res.redirect("/");
   });
 
   // Render 404 page for any unmatched routes
