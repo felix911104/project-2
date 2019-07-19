@@ -38,6 +38,7 @@ module.exports = function (app) {
   app.get("/login", function (req, res) {
 
     if (req.user) {
+      console.log("htmlRoutes");
       res.redirect("/events");
     }
     res.render("login");

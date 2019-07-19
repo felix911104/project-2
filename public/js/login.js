@@ -30,6 +30,7 @@ $(document).ready(function () {
       password: password
     })
       .then(function () {
+        console.log("hi, how are you today... login.js")
         window.location.replace("/events");
         // If there's an error, log the error
       })

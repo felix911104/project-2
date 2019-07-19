@@ -1,10 +1,11 @@
 var db = require("../models");
 var passport = require("../config/passport");
-var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function(app) {
-
-  app.post("/api/login", isAuthenticated, function (req, res) {
+  // Using the passport.authenticate middleware with our local strategy.
+  // If the user has valid login credentials, send them to the members page.
+  // Otherwise the user will be sent an error
+  app.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.json(req.user);
   });
 
@@ -17,7 +18,8 @@ module.exports = function(app) {
     })
       .then(function () {
         console.log("why no redirect! apiRoutes.js");
-        res.redirect(307, "/api/login");
+        // res.redirect(307, "/api/login");
+        res.render("login");
       })
       .catch(function (err) {
         console.log(err, "what is err");
