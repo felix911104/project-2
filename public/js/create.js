@@ -9,8 +9,6 @@ $(document).ready(function () {
   var end = $("input#end");
   var email = $("input#email");
 
-  console.log(typeof(start), start, "type of start date");
-
   // When the form is submitted, we validate there's an email and password entered
   eventForm.on("submit", function (event) {
     event.preventDefault();

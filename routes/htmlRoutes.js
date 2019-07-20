@@ -50,7 +50,9 @@ module.exports = function (app) {
     res.render("create");
   });
 
-  app.get("/survey",isAuthenticated ,function (req, res) {
+  //TODO: add isAuthenticated
+
+  app.get("/survey", function (req, res) {
 
     res.render("survey");
   });

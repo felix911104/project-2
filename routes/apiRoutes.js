@@ -45,7 +45,7 @@ module.exports = function(app) {
         ['eventName']
       ],
     }).then(function(dbEvent){
-      
+      console.log(dbEvent);
       res.json(dbEvent)
     });
 
