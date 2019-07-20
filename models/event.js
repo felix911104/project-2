@@ -14,18 +14,18 @@ module.exports = (sequelize, DataTypes) => {
     },
     eventStart: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: true
     },
     eventEnd: {
       type: DataTypes.DATEONLY,
-      allowNull: false
+      allowNull: true
     },
     address: {
       type: DataTypes.STRING,
     },
     location: {
       type: DataTypes.STRING,
-      allowNull: false
+      allowNull: true
     },
     hostName: {
       type: DataTypes.STRING
@@ -51,6 +51,8 @@ module.exports = (sequelize, DataTypes) => {
       through: "peoples_networks",
       foreignKey: "eventId"
     });
+    
+ 
   
   };
 
