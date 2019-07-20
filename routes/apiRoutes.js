@@ -1,5 +1,137 @@
 var db = require("../models");
 var passport = require("../config/passport");
+var groups = [
+  {
+    Eventid: 1,
+    eventName: "Bellevue Coders",
+    eventDate: 7/20/2019,
+    userid: "wilson@gmail.com",
+    surveyAns: 1,
+    location: "Lucky Strike, Bellevue"
+  },
+  {
+    Eventid: 1,
+    eventName: "Bellevue Coders",
+    eventDate: 7/20/2019,
+    userid: "penny@gmail.com",
+    surveyAns: 3,
+    location: "Lucky Strike, Bellevue"
+  },
+  {
+    Eventid: 1,
+    eventName: "Bellevue Coders",
+    eventDate: 7/20/2019,
+    userid: "fant@gmail.com",
+    surveyAns: 2,
+    location: "Lucky Strike, Bellevue"
+  },
+  {
+    Eventid: 1,
+    eventName: "Bellevue Coders",
+    eventDate: 7/20/2019,
+    userid: "Reed@gmail.com",
+    surveyAns: 1,
+    location: "Lucky Strike, Bellevue"
+  },
+  {
+    Eventid: 1,
+    eventName: "Bellevue Coders",
+    eventDate: 7/20/2019,
+    userid: "marsh@gmail.com",
+    surveyAns: 1,
+    location: "Lucky Strike, Bellevue"
+  },
+  {
+    Eventid: 1,
+    eventName: "Bellevue Coders",
+    eventDate: 7/20/2019,
+    userid: "wagner@gmail.com",
+    surveyAns: 2,
+    location: "Lucky Strike, Bellevue"
+  },
+  {
+    Eventid: 1,
+    eventName: "Bellevue Coders",
+    eventDate: 7/20/2019,
+    userid: "blair@gmail.com",
+    surveyAns: 2,
+    location: "Lucky Strike, Bellevue"
+  },
+
+{
+  Eventid: 1,
+  eventName: "Bellevue Coders",
+  eventDate: 7/20/2019,
+  userid: "Lockett@gmail.com",
+  surveyAns: 2,
+  location: "Lucky Strike, Bellevue"
+},
+{
+  Eventid: 1,
+  eventName: "Bellevue Coders",
+  eventDate: 7/20/2019,
+  userid: "britt@gmail.com",
+  surveyAns: 4,
+  location: "Lucky Strike, Bellevue"
+},
+
+{
+Eventid: 1,
+eventName: "Bellevue Coders",
+eventDate: 7/20/2019,
+userid: "Wright@gmail.com",
+surveyAns: 3,
+location: "Lucky Strike, Bellevue"
+},
+{
+  Eventid: 1,
+  eventName: "Bellevue Coders",
+  eventDate: 7/20/2019,
+  userid: "dickson@gmail.com",
+  surveyAns: 4,
+  location: "Lucky Strike, Bellevue"
+}
+];
+
+var blueGroup = [];
+var greenGroup = [];
+var redGroup = [];
+var purpleGroup = [];
+
+for (var i=0; i<groups.length; i++){
+
+  var surveyResponse = (groups[i].surveyAns);
+  //console.log(surveyResponse);
+  switch(surveyResponse){
+
+    case 1:
+      //console.log("Blue Group")
+      blueGroup.push(groups[i]);
+     // console.log(blueGroup[0]);
+    break;
+    case 2:
+     // console.log("green Group")
+      greenGroup.push(groups[i]);
+     // console.log(greenGroup[0]);
+      break;
+    case 3:
+     // console.log("Red Group")
+      redGroup.push(groups[i]);
+      //console.log(redGroup[0]);
+      break;
+    case 4:
+     // console.log("Purple Group")
+      purpleGroup.push(groups[i]);
+      //console.log(purpleGroup[0]);
+      break;
+    
+    }
+    
+    
+    
+    
+  }
+
 
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
@@ -8,7 +140,57 @@ module.exports = function(app) {
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
     res.json(req.user);
   });
+  // joining the two tables answers and events by userId. Provides a link to the API that will give individual survey results based on userid-MH
+  app.get('/api/testanswers/:userid',function(req,res){
+    db.User.findOne({
+      where:{
+        id:req.params.userid
+      },
+      include:[db.Answer,{
+        model:db.Event,
+        as: "Peoples"
+      }]
+    }).then(user=>{
+      res.json(user)
+    })
+  })
+// Creates a list of what groups the attendees belong to based on their survey answers-MH
+  app.get('/api/eventGroups',function(req,res){
+    //for demonstration purposes, I'm using a local array to populate the newtworking groups-MH
+   
+    
+    res.json(blueGroup)
+   
 
+    //Currently working to make this sequelize code pull information from the database. 
+    // db.Event.findAll({
+    //   where:{
+    //     id:req.params.eventid // the event id is capitalized in the db, but maybe needs to be lower case based on model??? i dunno
+    //   },
+    //   include:[db.Answers,{
+    //     model:db.User,
+    //     as: "Networks"
+    //   }]
+    // }).then(event=>{
+    //   res.json(event)
+    // })
+  })
+
+  // joining the answers and events table. Creating a route to the api that provides the users answers to the survey questions MH
+  app.get('/api/testanswers',function(req,res){
+    db.User.findAll({
+    
+      include:[db.Answer,{
+        model:db.Event,
+        as: "Peoples"
+        
+      }]
+    }).then(user=>{
+    
+      res.json(user)
+      
+    })
+  })
   //create user
   app.post("/api/signup", (req, res) => {
     console.log(req.body, "api sign up");
@@ -27,7 +209,7 @@ module.exports = function(app) {
       });
   });
 
-  //Event API Route provides list of all events. Listed ascending eventStart order
+  //Event API Route provides list of all events. Listed ascending eventStart order-MH
     app.get("/api/events/", function(req, res) {
       db.Event.findAll({
         order:[
@@ -38,7 +220,7 @@ module.exports = function(app) {
         res.json(dbEvent)
       });
   });
-  // EVENT API that orders the list of events by name
+  // EVENT API that orders the list of events by name-MH
   app.get("/api/events/name", function(req, res) {
     db.Event.findAll({
       order:[
@@ -47,11 +229,12 @@ module.exports = function(app) {
     }).then(function(dbEvent){
       console.log(dbEvent);
       res.json(dbEvent)
+      console.log(dbEvent)
     });
 
 });
 
-  // EVENT API that orders the list of events by location
+  // EVENT API that orders the list of events by location-MH
   app.get("/api/events/location", function(req, res) {
     db.Event.findAll({
       order:[
