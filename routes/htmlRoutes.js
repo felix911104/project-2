@@ -20,12 +20,13 @@ module.exports = function (app) {
     res.render("about");
   });
 
-  app.get("/events", isAuthenticated, function (req, res) {
+  //TODO: add isAuthenticated
+  app.get("/events", function (req, res) {
 
     res.render("events");
   });
 
-  app.get("/groups", function (req, res) {
+  app.get("/groups", isAuthenticated, function (req, res) {
 
     res.render("groups");
   });
@@ -49,7 +50,7 @@ module.exports = function (app) {
     res.render("create");
   });
 
-  app.get("/survey", function (req, res) {
+  app.get("/survey",isAuthenticated ,function (req, res) {
 
     res.render("survey");
   });

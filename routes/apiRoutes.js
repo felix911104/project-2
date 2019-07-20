@@ -111,13 +111,15 @@ module.exports = function(app) {
   })
 
   //event creation
-  app.post("/host", (req, res) => {
+  app.post("/api/create", (req, res) => {
+    console.log(req.body, "req body inside event creation apiRoute.js");
     db.Event.create({
       eventName: req.body.name,
       eventStart: req.body.start,
       eventEnd: req.body.end,
-      address: req.body.address,
-      location: req.body.location
+      email: req.body.email,
+      location: req.body.location,
+      company: req.body.company
     }).then(result => {
       console.log("event created");
     })
