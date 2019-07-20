@@ -26,7 +26,8 @@ module.exports = function (app) {
     res.render("events");
   });
 
-  app.get("/groups", isAuthenticated, function (req, res) {
+  //TODO: isAuthenticated
+  app.get("/groups", function (req, res) {
 
     res.render("groups");
   });
