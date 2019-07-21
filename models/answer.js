@@ -48,11 +48,11 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false
       }
     });
-    Answer.belongsTo(models.Event, {
-      foreignKey: {
-        allowNull: false
-      }
-    })
+    // Answer.belongsTo(models.Event, {
+    //   foreignKey: {
+    //     allowNull: false
+    //   }
+    // })
   }
   // Answer.associate = models => {
   //   Answer.belongsTo(models.Event, {

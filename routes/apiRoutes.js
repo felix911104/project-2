@@ -3,6 +3,8 @@ var faker = require("faker");
 var passport = require("../config/passport");
 var groups = [];
 
+var fuckTheWorld = [];
+
 // The following code user the Faker NPM to automatcally generate user information for testing purposes
 for (let i = 0; i < 24; i++) {
   groups.push(
@@ -60,6 +62,8 @@ module.exports = function(app) {
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
 
     console.log(req.user.dataValues.id, "post log in apiRoute.js");
+
+    fuckTheWorld.push(req.user.dataValues.id);
 
     // res.render("events", { id: req.user.dataValues.id});
     // res.send("/events/" + req.user.dataValues.id);
@@ -154,6 +158,7 @@ module.exports = function(app) {
   });
   // EVENT API that orders the list of events by name-MH
   app.get("/api/events/name", function(req, res) {
+    console.log(fuckTheWorld);
     db.Event.findAll({
       order:[
         ['eventName']
@@ -214,6 +219,7 @@ module.exports = function(app) {
       company: req.body.company
     }).then(result => {
       console.log("event created");
+      res.end();
     })
   })
 
@@ -236,8 +242,11 @@ module.exports = function(app) {
       a8: req.body.a8,
       a9: req.body.a9,
       a10: req.body.a10,
+      UserId: fuckTheWorld[fuckTheWorld.length - 1]
     }).then(result => {
+      
       console.log("survey answer uploaded");
+      res.end();
       // window.location.replace("/events");
     })
   })
