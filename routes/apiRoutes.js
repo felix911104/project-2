@@ -3,6 +3,7 @@ var faker = require("faker");
 var passport = require("../config/passport");
 var groups = [];
 
+// The following code user the Faker NPM to automatcally generate user information for testing purposes
 for (let i = 0; i < 24; i++) {
   groups.push(
     {
