@@ -12,7 +12,7 @@ $(document).ready(function () {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
-    console.log(userData);
+
     if (!userData.email || !userData.password) {
       return;
     }
@@ -25,12 +25,16 @@ $(document).ready(function () {
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
   function loginUser(email, password) {
+    console.log("login function login.js")
     $.post("/api/login", {
       email: email,
       password: password
     })
-      .then(function () {
+      .then(function (data) {
+        // console.log("/"+data+"/events");
+        var shit = "/" + data + "/events";
         console.log("hi, how are you today... login.js")
+        // window.location.replace(shit);
         window.location.replace("/events");
         // If there's an error, log the error
       })
