@@ -1,97 +1,20 @@
 var db = require("../models");
+var faker = require("faker");
 var passport = require("../config/passport");
-var groups = [
-  {
-    Eventid: 1,
-    eventName: "Bellevue Coders",
-    eventDate: 7/20/2019,
-    userid: "wilson@gmail.com",
-    surveyAns: 1,
-    location: "Lucky Strike, Bellevue"
-  },
-  {
-    Eventid: 1,
-    eventName: "Bellevue Coders",
-    eventDate: 7/20/2019,
-    userid: "penny@gmail.com",
-    surveyAns: 3,
-    location: "Lucky Strike, Bellevue"
-  },
-  {
-    Eventid: 1,
-    eventName: "Bellevue Coders",
-    eventDate: 7/20/2019,
-    userid: "fant@gmail.com",
-    surveyAns: 2,
-    location: "Lucky Strike, Bellevue"
-  },
-  {
-    Eventid: 1,
-    eventName: "Bellevue Coders",
-    eventDate: 7/20/2019,
-    userid: "Reed@gmail.com",
-    surveyAns: 1,
-    location: "Lucky Strike, Bellevue"
-  },
-  {
-    Eventid: 1,
-    eventName: "Bellevue Coders",
-    eventDate: 7/20/2019,
-    userid: "marsh@gmail.com",
-    surveyAns: 1,
-    location: "Lucky Strike, Bellevue"
-  },
-  {
-    Eventid: 1,
-    eventName: "Bellevue Coders",
-    eventDate: 7/20/2019,
-    userid: "wagner@gmail.com",
-    surveyAns: 2,
-    location: "Lucky Strike, Bellevue"
-  },
-  {
-    Eventid: 1,
-    eventName: "Bellevue Coders",
-    eventDate: 7/20/2019,
-    userid: "blair@gmail.com",
-    surveyAns: 2,
-    location: "Lucky Strike, Bellevue"
-  },
+var groups = [];
 
-{
-  Eventid: 1,
-  eventName: "Bellevue Coders",
-  eventDate: 7/20/2019,
-  userid: "Lockett@gmail.com",
-  surveyAns: 2,
-  location: "Lucky Strike, Bellevue"
-},
-{
-  Eventid: 1,
-  eventName: "Bellevue Coders",
-  eventDate: 7/20/2019,
-  userid: "britt@gmail.com",
-  surveyAns: 4,
-  location: "Lucky Strike, Bellevue"
-},
-
-{
-Eventid: 1,
-eventName: "Bellevue Coders",
-eventDate: 7/20/2019,
-userid: "Wright@gmail.com",
-surveyAns: 3,
-location: "Lucky Strike, Bellevue"
-},
-{
-  Eventid: 1,
-  eventName: "Bellevue Coders",
-  eventDate: 7/20/2019,
-  userid: "dickson@gmail.com",
-  surveyAns: 4,
-  location: "Lucky Strike, Bellevue"
+for (let i = 0; i < 24; i++) {
+  groups.push(
+    {
+      Eventid: 1,
+      eventName: "Bellevue Coders",
+      eventDate: "7/20/2019",
+      userid: faker.internet.email(),
+      surveyAns: faker.random.number({min: 1,max: 4}),
+      location: "Lucky Strike, Bellevue"
+    }
+  )
 }
-];
 
 var blueGroup = [];
 var greenGroup = [];
@@ -126,10 +49,6 @@ for (var i=0; i<groups.length; i++){
       break;
     
     }
-    
-    
-    
-    
   }
 
 
@@ -157,8 +76,14 @@ module.exports = function(app) {
     //for demonstration purposes, I'm using a local array to populate the newtworking groups-MH
    
     
-    res.json(blueGroup)
-   
+    res.json(
+      {
+        blue: blueGroup,
+        green: greenGroup,
+        red: redGroup,
+        purple: purpleGroup
+      }
+      )
 
     //Currently working to make this sequelize code pull information from the database. 
     // db.Event.findAll({

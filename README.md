@@ -21,6 +21,7 @@ This application utilizes the following NPM packages:
 * MySQL
 * Sequelize
 * Express-Handlebars
+* Faker
 
 
 
