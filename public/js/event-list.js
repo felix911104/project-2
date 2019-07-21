@@ -32,7 +32,7 @@ function getEvents(){
         class:"col-md-3 text-white mb-3 mb-md-0"
       });
 
-      var spanOne = $("<span>")
+      var spanOne = $("<span>");
       spanOne.text(req[i].eventStart);
 
       var divFour = $("<div>");
@@ -42,7 +42,8 @@ function getEvents(){
 
       var h2One = $("<h2>");
       h2One.attr({
-        class: "text-white"
+        class: "text-white",
+        eventID: req[i].id
       });
       h2One.text(req[i].eventName);
 

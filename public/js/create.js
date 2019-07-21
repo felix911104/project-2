@@ -47,7 +47,7 @@ $(document).ready(function () {
       email: email
     })
       .then(function () {
-        console.log("hi, how are you today... login.js")
+        console.log("hi, how are you today... create.js");
         window.location.replace("/events");
         // If there's an error, log the error
       })

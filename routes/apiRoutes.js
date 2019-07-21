@@ -3,6 +3,8 @@ var faker = require("faker");
 var passport = require("../config/passport");
 var groups = [];
 
+var fuckTheWorld = [];
+
 // The following code user the Faker NPM to automatcally generate user information for testing purposes
 for (let i = 0; i < 24; i++) {
   groups.push(
@@ -58,7 +60,15 @@ module.exports = function(app) {
   // If the user has valid login credentials, send them to the members page.
   // Otherwise the user will be sent an error
   app.post("/api/login", passport.authenticate("local"), function (req, res) {
-    res.json(req.user);
+
+    console.log(req.user.dataValues.id, "post log in apiRoute.js");
+
+    fuckTheWorld.push(req.user.dataValues.id);
+
+    // res.render("events", { id: req.user.dataValues.id});
+    // res.send("/events/" + req.user.dataValues.id);
+    // res.redirect("/events/" + req.user.dataValues.id)
+    res.json(req.user.dataValues.id);
   });
   // joining the two tables answers and events by userId. Provides a link to the API that will give individual survey results based on userid-MH
   app.get('/api/testanswers/:userid',function(req,res){
@@ -77,7 +87,7 @@ module.exports = function(app) {
 // Creates a list of what groups the attendees belong to based on their survey answers-MH
   app.get('/api/eventGroups',function(req,res){
     //for demonstration purposes, I'm using a local array to populate the newtworking groups-MH
-   
+
     
     res.json(
       {
@@ -130,7 +140,7 @@ module.exports = function(app) {
         res.render("login");
       })
       .catch(function (err) {
-        console.log(err, "what is err");
+
         res.status(401).json(err);
       });
   });
@@ -148,14 +158,13 @@ module.exports = function(app) {
   });
   // EVENT API that orders the list of events by name-MH
   app.get("/api/events/name", function(req, res) {
+    console.log(fuckTheWorld);
     db.Event.findAll({
       order:[
         ['eventName']
       ],
     }).then(function(dbEvent){
-      console.log(dbEvent);
-      res.json(dbEvent)
-      console.log(dbEvent)
+      res.json(dbEvent);
     });
 
 });
@@ -182,27 +191,6 @@ module.exports = function(app) {
   // });
 
 
-
-  // Get all examples
-  // app.get("/api/examples", function(req, res) {
-  //   db.Example.findAll({}).then(function(dbExamples) {
-  //     res.json(dbExamples);
-  //   });
-  // });
-
-  // // Create a new example
-  // app.post("/api/examples", function(req, res) {
-  //   db.Example.create(req.body).then(function(dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
-
-  // // Delete an example by id
-  // app.delete("/api/examples/:id", function(req, res) {
-  //   db.Example.destroy({ where: { id: req.params.id } }).then(function(dbExample) {
-  //     res.json(dbExample);
-  //   });
-  // });
 
   //get all users need to rework later
   // app.get("/login", (req, res) => {
@@ -231,6 +219,7 @@ module.exports = function(app) {
       company: req.body.company
     }).then(result => {
       console.log("event created");
+      res.end();
     })
   })
 
@@ -241,6 +230,26 @@ module.exports = function(app) {
     })
   })
 
+  app.post("/api/survey_answers", (req, res) => {
+    db.Answer.create({
+      a1: req.body.a1,
+      a2: req.body.a2,
+      a3: req.body.a3,
+      a4: req.body.a4,
+      a5: req.body.a5,
+      a6: req.body.a6,
+      a7: req.body.a7,
+      a8: req.body.a8,
+      a9: req.body.a9,
+      a10: req.body.a10,
+      UserId: fuckTheWorld[fuckTheWorld.length - 1]
+    }).then(result => {
+      
+      console.log("survey answer uploaded");
+      res.end();
+      // window.location.replace("/events");
+    })
+  })
   // Route for getting some data about our user to be used client side
   app.get("/api/user_data", function (req, res) {
     if (!req.user) {
