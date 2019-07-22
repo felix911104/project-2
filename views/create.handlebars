@@ -11,7 +11,112 @@
 
 <link rel="stylesheet" href="css/style.css">
 
-<div class="site-wrap">
+<ul>
+	{{#each events}}
+	<li>
+		<p>
+			{{this.id}}.{{this.events}}
+		</p>
+	</li>
+</ul>
+
+<h2>Create an Event</h2>
+<form id="createevent" class="button-size">
+	<textarea type="text" name="networkingEvent"></textarea>
+	<button type="submit">Submit Event</button>
+</form>
+
+<div class="row form-group">
+
+	<div class="col-md-12">
+		<label class="" for="subject">Name of the Event: </label>
+		<input type="subject" id="eventName" class="form-control">
+	</div>
+</div>
+
+<div class="row form-group">
+
+	<div class="col-md-12">
+		<label class="" for="subject">Company: </label>
+		<input type="subject" id="company" class="form-control">
+	</div>
+</div>
+
+<div class="row form-group">
+
+	<div class="col-md-12">
+		<label class="" for="subject">Address: </label>
+		<input type="subject" id="address" class="form-control">
+	</div>
+</div>
+
+<div class="row form-group">
+
+	<div class="col-md-12">
+		<label class="" for="subject">Location: </label>
+		<input type="subject" id="location" class="form-control">
+	</div>
+</div>
+
+<div class="row form-group">
+	<div class="col-md-6 mb-3 mb-md-0">
+		<label class="">Start Date</label>
+		<input type="date" class="form-control">
+	</div>
+	<div class="col-md-6">
+		<label class="">End Date</label>
+		<input type="date" class="form-control">
+	</div>
+</div>
+
+<div class="row form-group">
+
+	<div class="col-md-12">
+		<label class="" for="subject">Host Name: </label>
+		<input type="subject" id="hostName" class="form-control">
+	</div>
+</div>
+
+<div class="row form-group">
+
+	<div class="col-md-12">
+		<label class="" for="email">Email</label>
+		<input type="email" id="email" class="form-control">
+	</div>
+</div>
+
+<div class="row form-group">
+	<div class="col-md-12">
+		<input type="submit" value="Create Event" class="btn btn-primary py-2 px-4 text-white">
+	</div>
+</div>
+
+
+</form>
+</div>
+
+<script type="text/javascript">
+	$("#createevent").on("submit", function(event) {
+		event.preventDefault();
+		var newEvent = {
+			event: $("#createevent [name=event]").val().trim()
+		};
+
+		$.ajax("/api/events", {
+			type: "POST",
+			data: newEvent
+		}).then(
+			function () {
+				console.log("created a new event");
+				location.reload();
+			}
+		);
+	});
+
+
+</script>
+
+{{!-- <div class="site-wrap">
 
     <div class="site-mobile-menu">
         <div class="site-mobile-menu-header">
@@ -36,7 +141,7 @@
                             <li><a href="/about">About Us</a></li>
                             <li><a href="/events">UpComing-Events</a></li>
                             <li><a href="/news">News</a></li>
-                            <li class="active"><a href="/contact">Contacts</a></li>
+                            <li><a href="/contact">Contacts</a></li>
                             <li class="cta"><a href="/login">Log In</a></li>
                         </ul>
                     </nav>
@@ -123,117 +228,10 @@
 
                 </form>
             </div>
-            {{!-- <div class="col-md-5 ml-auto" data-aos="fade-up" data-aos-delay="100">
-        <div class="p-4 mb-3">
-          <p class="mb-0 font-weight-bold text-secondary text-uppercase mb-3">Address</p>
-          <p class="mb-4">203 Fake St. Mountain View, San Francisco, California, USA</p>
-
-          <p class="mb-0 font-weight-bold text-secondary text-uppercase mb-3">Phone</p>
-          <p class="mb-4"><a href="#">+1 232 3235 324</a></p>
-
-          <p class="mb-0 font-weight-bold text-secondary text-uppercase mb-3">Email Address</p>
-          <p class="mb-0"><a href="#">youremail@domain.com</a></p>
-
-        </div>
-      </div> --}}
-        </div>
-    </div>
-</div>
-
-
-<!-- <div class="site-section" data-aos="fade">
-      <div class="container">
-        <div class="row mb-5 justify-content-center">
-          <div class="col-lg-4 mb-5">
-            <div class="site-section-heading">
-              <h2 class="text-center">Testimonials</h2>
-            </div>
-          </div>
-        </div>
-
-        <div class="slide-one-item home-slider owl-carousel">
-          
-          <div class="row justify-content-center">
-
-            <div class="testimony text-center col-md-5">
-              <figure>
-                <img src="images/person_1.jpg" alt="Image" class="img-fluid">
-              </figure>
-              <blockquote>
-                <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime exercitationem alias reprehenderit error quidem aliquam ad minus, veritatis modi.&rdquo;</p>
-                <p class="author">&mdash; Emely Peters</p>
-              </blockquote>
-            </div>
-          </div>
-
-          <div class="row justify-content-center">
-           <div class="testimony text-center col-md-5">
-              <figure>
-                <img src="images/person_2.jpg" alt="Image" class="img-fluid">
-              </figure>
-              <blockquote>
-                <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime exercitationem alias reprehenderit error quidem aliquam ad minus, veritatis modi.&rdquo;</p>
-                <p class="author">&mdash; Alex Anchors</p>
-              </blockquote>
-            </div>
-          </div>
-
-          <div class="row justify-content-center">
-            <div class="testimony text-center col-md-5">
-              <figure>
-                <img src="images/person_3.jpg" alt="Image" class="img-fluid">
-              </figure>
-              <blockquote>
-                <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime exercitationem alias reprehenderit error quidem aliquam ad minus, veritatis modi.&rdquo;</p>
-                <p class="author">&mdash; Aaron Thomas</p>
-              </blockquote>
-            </div>
-          </div>
-
-          <div class="row justify-content-center">
-            <div class="testimony text-center col-md-5">
-              <figure>
-                <img src="images/person_1.jpg" alt="Image" class="img-fluid">
-              </figure>
-              <blockquote>
-                <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime exercitationem alias reprehenderit error quidem aliquam ad minus, veritatis modi.&rdquo;</p>
-                <p class="author">&mdash; Emely Peters</p>
-              </blockquote>
-            </div>
-          </div>
-
-          <div class="row justify-content-center">
-           <div class="testimony text-center col-md-5">
-              <figure>
-                <img src="images/person_2.jpg" alt="Image" class="img-fluid">
-              </figure>
-              <blockquote>
-                <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime exercitationem alias reprehenderit error quidem aliquam ad minus, veritatis modi.&rdquo;</p>
-                <p class="author">&mdash; Alex Anchors</p>
-              </blockquote>
-            </div>
-          </div>
-
-          <div class="row justify-content-center">
-            <div class="testimony text-center col-md-5">
-              <figure>
-                <img src="images/person_3.jpg" alt="Image" class="img-fluid">
-              </figure>
-              <blockquote>
-                <p>&ldquo;Lorem ipsum dolor sit amet, consectetur adipisicing elit. Maxime exercitationem alias reprehenderit error quidem aliquam ad minus, veritatis modi.&rdquo;</p>
-                <p class="author">&mdash; Aaron Thomas</p>
-              </blockquote>
-            </div>
-          </div>
-
-        </div> -->
-
-
-
 
 
 </div>
-</div>
+</div> --}}
 
 
 <footer class="site-footer">
