@@ -128,7 +128,6 @@ function getTestData(){
 
       divRed.append(spanOne);
       divRed.append(endDiv);
-
       $("#red").append(divRed);
 
     }
