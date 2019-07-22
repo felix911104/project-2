@@ -14,13 +14,21 @@ module.exports = function (app) {
   });
 
   //TODO: add isAuthenticated
+<<<<<<< HEAD
+  app.get("/events",  function (req, res) {
+=======
   app.get("/events", function (req, res) {
+>>>>>>> 579947859c3c0410334f033802226607f19010bb
 
     res.render("events");
   });
 
   //TODO: isAuthenticated
+<<<<<<< HEAD
+  app.get("/groups",  function (req, res) {
+=======
   app.get("/groups", function (req, res) {
+>>>>>>> 579947859c3c0410334f033802226607f19010bb
 
     res.render("groups");
   });
@@ -45,7 +53,11 @@ module.exports = function (app) {
 
   //TODO: add isAuthenticated
 
+<<<<<<< HEAD
+  app.get("/survey",  function (req, res) {
+=======
   app.get("/survey", function (req, res) {
+>>>>>>> 579947859c3c0410334f033802226607f19010bb
 
     res.render("survey");
   });
