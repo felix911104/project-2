@@ -14,13 +14,13 @@ module.exports = function (app) {
   });
 
   //TODO: add isAuthenticated
-  app.get("/events", isAuthenticated, function (req, res) {
+  app.get("/events", function (req, res) {
 
     res.render("events");
   });
 
   //TODO: isAuthenticated
-  app.get("/groups", isAuthenticated, function (req, res) {
+  app.get("/groups", function (req, res) {
 
     res.render("groups");
   });
@@ -46,7 +46,7 @@ module.exports = function (app) {
 
   //TODO: add isAuthenticated
 
-  app.get("/survey", isAuthenticated, function (req, res) {
+  app.get("/survey", function (req, res) {
 
     res.render("survey");
   });
