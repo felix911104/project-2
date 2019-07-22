@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "PASSWORD",
+    "password": "26400918a",
     "database": "user_event_db",
     "host": "localhost",
     "dialect": "mysql"
