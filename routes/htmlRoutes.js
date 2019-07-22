@@ -1,33 +1,26 @@
-var db = require("../models");
-var path = require("path");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
-    // db.Example.findAll({}).then(function (dbExamples) {
-    //   res.render("index", {
-    //     msg: "Welcome!",
-    //     examples: dbExamples
-    //   });
-    // });
+
     res.render("index");
   });
 
-  // Load example page and pass in an example by id
+
   app.get("/about", function (req, res) {
 
     res.render("about");
   });
 
   //TODO: add isAuthenticated
-  app.get("/events", function (req, res) {
+  app.get("/events", isAuthenticated, function (req, res) {
 
     res.render("events");
   });
 
   //TODO: isAuthenticated
-  app.get("/groups", function (req, res) {
+  app.get("/groups", isAuthenticated, function (req, res) {
 
     res.render("groups");
   });
@@ -52,7 +45,7 @@ module.exports = function (app) {
 
   //TODO: add isAuthenticated
 
-  app.get("/survey", function (req, res) {
+  app.get("/survey", isAuthenticated, function (req, res) {
 
     res.render("survey");
   });
