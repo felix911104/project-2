@@ -20,11 +20,13 @@ module.exports = function (app) {
     res.render("about");
   });
 
-  app.get("/events", isAuthenticated, function (req, res) {
+  //TODO: add isAuthenticated
+  app.get("/events", function (req, res) {
 
     res.render("events");
   });
 
+  //TODO: isAuthenticated
   app.get("/groups", function (req, res) {
 
     res.render("groups");
@@ -38,7 +40,6 @@ module.exports = function (app) {
   app.get("/login", function (req, res) {
 
     if (req.user) {
-      console.log("htmlRoutes");
       res.redirect("/events");
     }
     res.render("login");
@@ -48,6 +49,8 @@ module.exports = function (app) {
 
     res.render("create");
   });
+
+  //TODO: add isAuthenticated
 
   app.get("/survey", function (req, res) {
 

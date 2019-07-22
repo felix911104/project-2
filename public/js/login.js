@@ -12,7 +12,11 @@ $(document).ready(function () {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
+<<<<<<< HEAD
     console.log(userData);
+=======
+
+>>>>>>> 5d0c91ca3ad61ad76714a6b0162aab7594d12d6a
     if (!userData.email || !userData.password) {
       return;
     }
@@ -25,12 +29,24 @@ $(document).ready(function () {
 
   // loginUser does a post to our "api/login" route and if successful, redirects us the the members page
   function loginUser(email, password) {
+<<<<<<< HEAD
+=======
+    console.log("login function login.js")
+>>>>>>> 5d0c91ca3ad61ad76714a6b0162aab7594d12d6a
     $.post("/api/login", {
       email: email,
       password: password
     })
+<<<<<<< HEAD
       .then(function () {
         console.log("hi, how are you today... login.js")
+=======
+      .then(function (data) {
+        // console.log("/"+data+"/events");
+        var shit = "/" + data + "/events";
+        console.log("hi, how are you today... login.js")
+        // window.location.replace(shit);
+>>>>>>> 5d0c91ca3ad61ad76714a6b0162aab7594d12d6a
         window.location.replace("/events");
         // If there's an error, log the error
       })
