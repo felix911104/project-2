@@ -37,6 +37,9 @@ module.exports = function (sequelize, DataTypes) {
       validate: {
         len: [8]
       }
+    },
+    score: {
+      type: DataTypes.INTEGER
     }
   });
 
@@ -62,6 +65,11 @@ module.exports = function (sequelize, DataTypes) {
       foreignKey: {
         allowNull: false
       }
+    });
+
+    User.belongsToMany(User, {
+      as: "Pricks",
+      through: "connections"
     });
   };
 
