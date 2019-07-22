@@ -1,20 +1,13 @@
-var db = require("../models");
-var path = require("path");
 var isAuthenticated = require("../config/middleware/isAuthenticated");
 
 module.exports = function (app) {
   // Load index page
   app.get("/", function (req, res) {
-    // db.Example.findAll({}).then(function (dbExamples) {
-    //   res.render("index", {
-    //     msg: "Welcome!",
-    //     examples: dbExamples
-    //   });
-    // });
+
     res.render("index");
   });
 
-  // Load example page and pass in an example by id
+
   app.get("/about", function (req, res) {
 
     res.render("about");
