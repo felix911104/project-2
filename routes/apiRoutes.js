@@ -113,20 +113,25 @@ module.exports = function(app) {
   })
 
   // joining the answers and events table. Creating a route to the api that provides the users answers to the survey questions MH
-  app.get('/api/testanswers',function(req,res){
-    db.User.findAll({
+  // app.get('/api/testanswers',function(req,res){
+  //   db.User.findAll({
     
-      include:[db.Answer,{
-        model:db.Event,
-        as: "Peoples"
+  //     include:[db.Answer,{
+  //       model:db.Event,
+  //       as: "Peoples"
         
-      }]
-    }).then(user=>{
+  //     }]
+  //   }).then(user=>{
     
-      res.json(user)
+  //     res.json(user)
       
-    })
+  //   })
+  // })
+
+  app.get("/api/answers", (req, res) => {
+    db.Answer.findAll({})
   })
+
   //create user
   app.post("/api/signup", (req, res) => {
     console.log(req.body, "api sign up");
