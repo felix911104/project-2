@@ -128,9 +128,9 @@ module.exports = function(app) {
   //   })
   // })
 
-  app.get("/api/answers", (req, res) => {
-    db.Answer.findAll({})
-  })
+  // app.get("/api/answers", (req, res) => {
+  //   db.Answer.findAll({})
+  // })
 
   //create user
   app.post("/api/signup", (req, res) => {

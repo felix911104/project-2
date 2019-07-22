@@ -12,14 +12,12 @@ function getEvents(){
   $.get("/api/events/name", (req, res) => {
     console.log(req,"event-list.js");
 
-    var newDiv = $("<div>");
-    
     for(var i = 0; i < req.length; i++){
       var divOne = $("<div>");
       divOne.attr({
       class:"col-12 border-top border-bottom py-5",
       "data-aos":"fade",
-      "data-aos-delay":"200"
+      "data-aos-delay":"300"
       });
 
       var divTwo = $("<div>");
@@ -29,7 +27,7 @@ function getEvents(){
 
       var divThree = $("<div>");
       divThree.attr({
-        class:"col-md-3 text-white mb-3 mb-md-0"
+        class:"col-md-4 text-white mb-3 mb-md-0"
       });
 
       var spanOne = $("<span>");
@@ -37,25 +35,40 @@ function getEvents(){
 
       var divFour = $("<div>");
       divFour.attr({
-      class: "col-md-9"
+        class: "col-md-4 text-white mb-3 mb-md-0"
       });
 
-      var h2One = $("<h2>");
-      h2One.attr({
-        class: "text-white",
-        eventID: req[i].id
+      var aOne = $("<a>");
+      aOne.attr({
+        href: "/survey"
       });
-      h2One.text(req[i].eventName);
 
       var spanTwo = $("<span>");
-      spanTwo.text(req[i].eventEnd);
+      spanTwo.attr({
+        class: "h6",
+        eventID: req[i].id
+      });
+      spanTwo.text(req[i].eventName);
+
+      var divFive = $("<div>");
+      divFive.attr({
+        class: "col-md-4 text-white mb-3 mb-md-0"
+      });
+
+      var spanThree = $("<span>");
+      spanThree.attr({
+        class: "h6"
+      });
+      spanThree.text(req[i].location);
 
       divOne.append(divTwo);
       divTwo.append(divThree);
       divThree.append(spanOne);
       divTwo.append(divFour);
-      divFour.append(h2One);
-      divFour.append(spanTwo);
+      divFour.append(aOne);
+      aOne.append(spanTwo);
+      divTwo.append(divFive);
+      divFive.append(spanThree);
 
       $("#list").append(divOne);
 
