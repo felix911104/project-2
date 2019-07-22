@@ -54,10 +54,6 @@ for (var i=0; i<groups.length; i++){
     }
   }
 
-<<<<<<< HEAD
-=======
-
->>>>>>> 5d0c91ca3ad61ad76714a6b0162aab7594d12d6a
 module.exports = function(app) {
   // Using the passport.authenticate middleware with our local strategy.
   // If the user has valid login credentials, send them to the members page.
