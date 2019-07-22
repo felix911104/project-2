@@ -21,7 +21,7 @@ $(function(){
     $(".question span").each(function(){
     
         $(this).click(function(){
-            value = $(this).attr("value");
+            value = $(this).text();
             lazyArray.push(value);
             console.log(value, "what is value");
             q++;
