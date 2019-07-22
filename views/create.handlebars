@@ -64,14 +64,14 @@
     <div class="container">
         <div class="row">
             <div class="col-md-8" data-aos="fade-up">
-                <form action="#">
+                <form action="#" class="event">
 
 
                     <div class="row form-group">
 
                         <div class="col-md-12">
                             <label class="" for="subject">Name of the Event: </label>
-                            <input type="subject" id="subject" class="form-control">
+                            <input type="subject" id="name" class="form-control">
                         </div>
                     </div>
 
@@ -79,7 +79,7 @@
 
                         <div class="col-md-12">
                             <label class="" for="subject">Company: </label>
-                            <input type="subject" id="subject" class="form-control">
+                            <input type="subject" id="company" class="form-control">
                         </div>
                     </div>
 
@@ -87,18 +87,18 @@
 
                         <div class="col-md-12">
                             <label class="" for="subject">Location: </label>
-                            <input type="subject" id="subject" class="form-control">
+                            <input type="subject" id="location" class="form-control">
                         </div>
                     </div>
 
                     <div class="row form-group">
                         <div class="col-md-6 mb-3 mb-md-0">
                             <label class="">Start Date</label>
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" id="start">
                         </div>
                         <div class="col-md-6">
                             <label class="">End Date</label>
-                            <input type="date" class="form-control">
+                            <input type="date" class="form-control" id="end">
                         </div>
                     </div>
 
@@ -112,16 +112,11 @@
 
 
 
-                    {{!-- <div class="row form-group">
-            <div class="col-md-12">
-              <label class="" for="message">Message</label>
-              <textarea name="message" id="message" cols="30" rows="7" class="form-control"></textarea>
-            </div>
-          </div> --}}
+
 
                     <div class="row form-group">
                         <div class="col-md-12">
-                            <input type="submit" value="Create Event" class="btn btn-primary py-2 px-4 text-white">
+                            <button class="btn-custom" type="submit" value="Create Event" class="btn btn-primary py-2 px-4 text-white"><span>Create Event</span></button>
                         </div>
                     </div>
 
@@ -299,3 +294,4 @@
 <script src="js/aos.js"></script>
 
 <script src="js/main.js"></script>
+<script src="js/create.js"></script>

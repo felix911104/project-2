@@ -4,7 +4,7 @@ html, body {
     height: 100%;
     width: 100%;
     font-family: 'Raleway';
-    background-color: black;
+    background-color: #232531;
   }
   
   * {
@@ -26,7 +26,7 @@ html, body {
   #wrapper h1 {
     font-weight: 800;
     font-size: 1.7em;
-    color: #BDC3C7;
+    color: #ff5733;
     text-transform: uppercase;
     letter-spacing: 5px;
     text-align: center;
@@ -60,11 +60,11 @@ html, body {
   }
   #wrapper #submit {
     width: 80%;
-    margin-left: 10%;
+    /* margin-left: 10%; */
     position: relative;
     margin-top: 40px;
     border: none;
-    background-color: #BDC3C7;
+    background-color: #ff5733;
     font-family: 'Raleway';
     color: #fff;
     font-weight: 500;
@@ -101,7 +101,7 @@ html, body {
     margin-top: 35px;
   }
   #wrapper .placeholder.active {
-    color: #2ECC71;
+    color: #ff5733;
     font-size: .8em;
     transition: all .2s ease-in-out;
   }
