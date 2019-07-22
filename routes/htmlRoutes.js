@@ -33,7 +33,6 @@ module.exports = function (app) {
   app.get("/login", function (req, res) {
 
     if (req.user) {
-
       res.redirect("/events");
     }
     res.render("login");

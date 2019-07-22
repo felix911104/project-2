@@ -12,7 +12,6 @@ $(document).ready(function () {
       email: emailInput.val().trim(),
       password: passwordInput.val().trim()
     };
-
     if (!userData.email || !userData.password) {
       return;
     }
